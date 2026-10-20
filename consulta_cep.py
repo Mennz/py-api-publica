@@ -16,5 +16,8 @@ else:
     resposta = urllib.request.urlopen(url)
     dados = json.loads(resposta.read())
 
-    print(f"{dados['logradouro']}, {dados['bairro']}")
-    print(f"{dados['localidade']} - {dados['uf']}")
+    if dados.get("erro"):
+        print("CEP nao encontrado")
+    else:
+        print(f"{dados['logradouro']}, {dados['bairro']}")
+        print(f"{dados['localidade']} - {dados['uf']}")
